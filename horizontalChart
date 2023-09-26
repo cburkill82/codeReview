@@ -1,0 +1,30 @@
+//Draw the graph bars
+func createHorizontalChart(percent: Int, background: Bool, layoutMargins: UIEdgeInsets) -> UIView {
+    print("DRAW CHART START")
+
+    //Draw rect from top left and specify the height
+    let xPos = 0
+    let yPos = 0
+    let rectHeight = 8
+    //Calcultate the width of the bar
+    let screenWidth = UIScreen.main.bounds.size.width
+    let widthMinusMargins = screenWidth - layoutMargins.left - layoutMargins.right
+    let barWidth = widthMinusMargins / CGFloat(100) * CGFloat(percent)
+    // Create a CGRect (CG=CoreGraphics) object which is used to render a rectangle.
+    let rectFrame: CGRect = CGRect(x:CGFloat(xPos), y:CGFloat(yPos), width:barWidth, height:CGFloat(rectHeight))
+    // Create a UIView object which use above CGRect object.
+    let barView = UIView(frame: rectFrame)
+    // Set UIView background color.
+    if background == true {
+        barView.backgroundColor = UIColor(named: "gGreenDark")
+    } else {
+        barView.backgroundColor = UIColor(named: "gBlack")
+    }
+
+    // Set the corner radius
+    barView.layer.cornerRadius = 5 // Adjust the value as needed
+    // Enable masksToBounds to ensure corners are rounded
+    barView.layer.masksToBounds = true
+    
+    return barView
+}
