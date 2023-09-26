@@ -28,3 +28,36 @@ func createHorizontalChart(percent: Int, background: Bool, layoutMargins: UIEdge
     
     return barView
 }
+
+func createPieChart(xCenter: CGFloat, yCenter: CGFloat) -> CAShapeLayer {
+    // Create a UIBezierPath for the arc
+    let arcPath = UIBezierPath()
+
+    // Define the center point of the arc
+    let center = CGPoint(x: xCenter, y: yCenter)
+
+    // Define the radius of the arc
+    let radius: CGFloat = 30
+
+    // Define the starting angle (in radians)
+    let startAngle: CGFloat = CGFloat(-Double.pi / 4) // -45 degrees
+
+    // Define the ending angle (in radians)
+    let endAngle: CGFloat = CGFloat(Double.pi / 4) // 45 degrees
+
+    // Create the arc path
+    arcPath.addArc(withCenter: center, radius: radius, startAngle: startAngle, endAngle: endAngle, clockwise: true)
+
+    // Create a CAShapeLayer to display the path
+    let shapeLayer = CAShapeLayer()
+    shapeLayer.path = arcPath.cgPath
+
+    if let gBlackColor = UIColor(named: "gBlack") {
+    shapeLayer.strokeColor = gBlackColor.cgColor
+    }
+    
+    shapeLayer.fillColor = UIColor.clear.cgColor
+    shapeLayer.lineWidth = 2.0
+            
+    return shapeLayer
+}
